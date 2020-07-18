@@ -5,6 +5,8 @@ func: about mongodb data read, write, update.
 author: Lele Wu.
 update: 2020/07/18 19:26
 '''
+from pymongo import MongoClient
+
 class MongoDBForData():
     def __init__(self,MONGO_URL="mongodb://localhost:27017",MONGO_DB="dataName",MONGO_COLLECTION="collectionName"):
         self.client = MongoClient(MONGO_URL)
