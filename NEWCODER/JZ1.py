@@ -19,16 +19,14 @@ true
 '''
 
 def find(target,array):
-    flg = 0
+    flg = len(array[0])
     for i in range(len(array)):
-        for j in range(flg, len(array[0])):
+        for j in range(flg):
             if (array[i][j] == target):
                 return True
             elif (array[i][j] > target):
-                flg = 0
-                break
-            else:
                 flg = j
+                break
     return False
 
 if __name__ == '__main__':
