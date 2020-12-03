@@ -11,7 +11,7 @@
 [58,24,0,67]
 
 要求：
-C/C++ 1秒，其他语言2秒
+时间限制：C/C++ 1秒，其他语言2秒
 空间限制：C/C++ 64M，其他语言128M
 '''
 
@@ -21,7 +21,7 @@ class ListNode:
         self.next = None
 
 def printListFromTailToHead(listNode):
-    # 注意判空操作
+    # 注意判空
     if (listNode == None):
         return []
     vals = []
