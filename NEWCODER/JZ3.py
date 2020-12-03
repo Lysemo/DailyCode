@@ -25,7 +25,7 @@ def printListFromTailToHead(listNode):
     if (listNode == None):
         return []
     vals = []
-    while (listNode != None):
+    while (listNode):
         vals.append(listNode.val)
         listNode = listNode.next
     for i in range(int(len(vals) / 2)):
