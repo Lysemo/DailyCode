@@ -3,7 +3,7 @@ def BubbleSort(arr, reversed=True):
     BubbleSort
     TimeComplex O(n^2)  SpaceComplex O(1)
     :param arr: list:arr
-    :param reversed: decrease or increase
+    :param reversed: increase or decrease
     :return: sorted[arr]
     """
     lens = len(arr)
