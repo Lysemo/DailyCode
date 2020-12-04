@@ -22,17 +22,22 @@
 using namespace std;
 
 int minNumberInRotateArray(vector<int> rotateArray) {
-        if(rotateArray.empty())
-            return 0;
-        for(int i=0;i<rotateArray.size()-1;i++){
-            if(rotateArray[i]<rotateArray[i+1]){
-                int tmp = rotateArray[i];
-                rotateArray[i] = rotateArray[i+1];
-                rotateArray[i+1] = tmp;
-            }
-        }
-        return rotateArray[rotateArray.size()-1];
+    if(rotateArray.empty())
+        return 0;
+    int first = 0, last = rotateArray.size()-1;
+    while(first < last){
+        if(rotateArray[first] < rotateArray[last])
+            return rotateArray[first];
+        int mid = first + int((last - first)/2);
+        if(rotateArray[mid]>rotateArray[last])
+            first = mid + 1;
+        else if(rotateArray[mid]<rotateArray[last])
+            last = mid;
+        else
+            last--;
     }
+    return rotateArray[first];
+}
 
 int main(){
     int a[] = {3,4,5,1,2};
