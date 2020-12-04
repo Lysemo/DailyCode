@@ -28,19 +28,12 @@ def reConstructBinaryTree(pre, tin):
     # write code here
     if(len(tin)==0):
         return None
-    if(len(tin)==1):
-        return TreeNode(tin[0])
     for i in range(len(tin)):
         if (tin[i] == pre[0]):
             break
-    for j in range(len(pre)):
-        if pre[j] not in tin[:i+1]:
-            break
-    if(j==len(pre)-1):
-        j = len(pre)
     root = TreeNode(tin[i])
-    root.left = reConstructBinaryTree(pre[1:j], tin[:i])
-    root.right = reConstructBinaryTree(pre[j:], tin[i + 1:])
+    root.left = reConstructBinaryTree(pre[1:i+1], tin[:i])
+    root.right = reConstructBinaryTree(pre[i+1:], tin[i + 1:])
     return root
 
 if __name__ == '__main__':
