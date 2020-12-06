@@ -21,9 +21,9 @@ using namespace std;
 
 //时间占用2ms | 内存占用484k
 int rectCover(int number) {
-    if(number<=1) return number;
+    if(number<=2) return number;
     int pre1=1,pre2=1,res;
-    for(int i=2;i<=number;i++){
+    for(int i=3;i<=number;i++){
         res = pre1 + pre2;
         pre1 = pre2;
         pre2 = res;
