@@ -18,13 +18,22 @@
 #  */
 def Power(base, exponent):
     """
-
     :param base: double
     :param exponent: int
     :return: base^exponent
     """
     # write code here
-    return base ** exponent
+    if exponent<0:
+        base = 1/base
+        exponent = -exponent
+    ans =1.0
+    while exponent:
+        if exponent&1:
+            ans *= base
+        base *=base
+        exponent >>=1
+    return ans
+
 
 if __name__ == '__main__':
     print(Power(2,3))
