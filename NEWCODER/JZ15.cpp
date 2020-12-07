@@ -26,6 +26,7 @@ struct ListNode {
 	}
 };
 
+//时间占用2ms | 内存占用376k
 ListNode* ReverseList(ListNode* pHead) {
     ListNode* pre = nullptr;
     ListNode* cur = pHead;
