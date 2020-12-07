@@ -44,6 +44,40 @@ ListNode* FindKthToTail(ListNode* pListHead, unsigned int k) {
     return nullptr;
 }
 
+//时间占用3ms | 内存占用476ms
+ListNode* FindKthToTail_(ListNode* pListHead, unsigned int k) {
+    if(!pListHead || k<=0) return nullptr;
+    int len = 0;
+    ListNode* p = pListHead;
+    while(p){
+        len++;
+        p = p->next;
+    }
+    if(len < k) return nullptr;
+    len -= k;
+    while(len--){
+        pListHead = pListHead->next;
+    }
+    return pListHead;
+}
+
+//快慢指针
+ListNode* FindKthToTail__(ListNode* pListHead, unsigned int k) {
+    if(!pListHead || k<=0) return nullptr;
+    auto slow = pListHead, fast = pListHead;
+    while (k--) {
+        if(fast)
+            fast = fast->next;
+        else
+            return nullptr;
+    }
+    while(fast) {
+        slow = slow->next;
+        fast = fast->next;
+    }
+    return slow;
+}
+
 int main(){
     ListNode* pListHead = new ListNode(1);
     ListNode* p = pListHead;
@@ -55,6 +89,7 @@ int main(){
     p = p->next;
     p->next = new ListNode(5);
     cout << FindKthToTail(pListHead,2)->val << endl;
+    cout << FindKthToTail_(pListHead,3)->val << endl;
     system("pause");
     return 1;
 }
