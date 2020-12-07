@@ -31,9 +31,36 @@ void reOrderArray(vector<int> &array) {
     }
 }
 
+//时间占用3ms | 内存占用484k
+void reOrderArray_(vector<int> &array) {
+    int i = 0;
+    for(int j=0;j<array.size();j++){
+        if(array[j]&1){
+            int tmp = array[j];
+            for(int k=j-1;k>=i;k--){
+                array[k+1] = array[k];
+            }
+            array[i++] = tmp;
+        }
+    }
+}
+
+void reOrderArray__(vector<int> &array) {
+    vector<int> arr;
+    for(const int v : array){
+        if(v&1) arr.push_back(v);
+    }
+    for(const int v: array){
+        if(!(v&1)) arr.push_back(v);
+    }
+    copy(arr.begin(),arr.end(),array.begin());
+}
+
 int main(){
     int a[] = {2,4,6,1,3,5,7};
     vector<int> array(a,a+7);
+    // reOrderArray__(array);
+    // reOrderArray_(array);
     reOrderArray(array);
     for(int i=0;i<array.size();i++)
         cout << array[i] << " ";
