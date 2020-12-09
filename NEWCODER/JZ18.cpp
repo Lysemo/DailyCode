@@ -23,6 +23,7 @@
  */ 
 
 #include<iostream>
+#include<queue>
 
 using namespace std;
 
@@ -44,6 +45,59 @@ void Mirror(TreeNode *pRoot) {
     pRoot->right = left;
     Mirror(left);
     Mirror(right);
+}
+
+TreeNode* dfs(TreeNode *r){
+    if(!r) return nullptr;
+    TreeNode *lval = dfs(r->left);
+    TreeNode *rval = dfs(r->right);
+    r->left = rval;
+    r->right = lval;
+    return r;
+}
+
+void Mirror_(TreeNode *pRoot){
+    if(!pRoot) return;
+    dfs(pRoot);
+}
+
+//非递归 层次遍历
+void bfs(TreeNode *root){
+    queue<TreeNode*> pq;
+    pq.push(root);
+    while (!pq.empty())
+    {
+        int sz = pq.size();
+        while(sz--){
+            TreeNode *node = pq.front();pq.pop();
+            //process node
+            cout << node->val << " ";
+            if(node->left) pq.push(node->left);
+            if(node->right) pq.push(node->right);
+        }
+    }
+}
+
+//非递归版本
+//从上往下交换
+void Mirror__(TreeNode *pRoot){
+    queue<TreeNode*> pq;
+    pq.push(pRoot);
+    while (!pq.empty())
+    {
+        int sz = pq.size();
+        while (sz--)
+        {
+            TreeNode *node = pq.front();
+            pq.pop();
+            if(node->left) pq.push(node->left);
+            if(node->right) pq.push(node->right);
+
+            TreeNode *cur = node->left;
+            node->left = node->right;
+            node->right = cur;
+        }
+    }
 }
 
 int main(){
