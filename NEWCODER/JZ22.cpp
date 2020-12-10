@@ -47,6 +47,21 @@ vector<int> PrintFromTopToBottom(TreeNode* root) {
     return arr;
 }
 
+vector<int> PrintFromTopToBottom_(TreeNode* root) {
+    vector<int> arr;
+    if(!root) return arr;
+    queue<TreeNode*> pd;
+    pd.push(root);
+    while(!pd.empty()){
+        TreeNode *node = pd.front();
+        pd.pop();
+        arr.push_back(node->val);
+        if(node->left) pd.push(node->left);
+        if(node->right) pd.push(node->right);
+    }
+    return arr;
+}
+
 int main(){
     TreeNode *root = new TreeNode(5);
     root->left = new TreeNode(4);
@@ -54,6 +69,7 @@ int main(){
     root->left->left->left = new TreeNode(2);
     root->left->left->left->left = new TreeNode(1);
     vector<int> arr = PrintFromTopToBottom(root);
+    // vector<int> arr = PrintFromTopToBottom_(root);
     for(int i=0;i<arr.size();i++){
         cout << arr[i] << " ";
     }
