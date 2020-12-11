@@ -23,6 +23,7 @@
 
 #include<iostream>
 #include<vector>
+#include<stack>
 
 using namespace std;
 
@@ -57,12 +58,31 @@ bool IsPopOrder(vector<int> pushV,vector<int> popV) {
     return true;
 }
 
+bool IsPopOrder_(vector<int> pushV,vector<int> popV) {
+        stack<int> st;
+        int i=0,j=0;
+        while(i < pushV.size()){
+            if(pushV[i] != popV[j]){
+                st.push(pushV[i++]);
+            }
+            else{
+                i++,j++;
+                while(!st.empty() && st.top() == popV[j]){
+                    st.pop();
+                    j++;
+                }
+            }
+        }
+        return st.empty();
+    }
+
 int main(){
     int a[] = {1,2,3,4,5};
     vector<int> pushV(a,a+5);
     int b[] = {4,5,3,2,1};
     vector<int> popV(b,b+5);
     cout << IsPopOrder(pushV,popV) << endl;
+    cout << IsPopOrder_(pushV,popV) << endl;
     system("pause");
     return 1;
 }
