@@ -21,7 +21,6 @@
  */ 
 
 #include<iostream>
-
 using namespace std;
 
 //递归版本
