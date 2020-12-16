@@ -60,6 +60,35 @@ RandomListNode* Clone(RandomListNode* pHead)
     return r->next;
 }
 
+RandomListNode* Clone_(RandomListNode* pHead){
+    if(!pHead) return nullptr;
+    RandomListNode *curN = pHead;
+    while (curN)
+    {
+        RandomListNode *cloN = new RandomListNode(curN->label);
+        RandomListNode *nexN = curN->next;
+        curN->next = cloN;
+        cloN->next = nexN;
+        curN = nexN;
+    }
+    curN = pHead;
+    while (curN)
+    {
+        curN->next->random = curN->random==nullptr?nullptr:curN->random->next;
+        curN = curN->next->next;
+    }
+    curN = pHead;
+    RandomListNode *cloHead = pHead->next;
+    while (curN)
+    {
+        RandomListNode *cloN = curN->next;
+        curN->next = cloN->next;
+        cloN->next = cloN->next==nullptr?nullptr:cloN->next->next;
+        curN = curN->next;
+    }
+    return cloHead;  
+}
+
 int main(){
     vector<RandomListNode*> nodes;
     RandomListNode *root = new RandomListNode(1);
@@ -76,6 +105,7 @@ int main(){
         p->random = nodes[rand()%4];
         p = p->next;
     }
-    RandomListNode *nRoot = Clone(root);
+    RandomListNode *nRoot1 = Clone(root);
+    RandomListNode *nRoot2 = Clone_(root);
     return 1;
 }
