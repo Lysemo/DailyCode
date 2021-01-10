@@ -29,21 +29,23 @@ class Solution:
 
     def plus_(self, pla: int, plb: int):
         """
-        Fixme: 错误版本 python版本负数表示为（负号+补码）
         :param pla:
         :param plb:
         :return:
         """
-        while (plb):
-            tmp = ((pla & plb) << 1)
+        while plb:
+            tmp = ((pla & plb) << 1)& 0xffffffff
             pla ^= plb
             plb = tmp
-        return pla
+        hibit = (pla & 0x80000000) >> 31        # 通过第32位符号位判断是否负数 如果是则取反加1再截断  正数则直接截断
+        if hibit == 1:
+            return -(((~pla) + 1) & 0xffffffff)
+        else:
+            return pla & 0xffffffff
 
     def plus__(self, pla: int, plb: int):
         """
-        Fixme: 存在错误（-1+2=1）maximum recursion depth exceeded
-        python 递归版本
+        Fixme: 存在错误 负数加法存在：maximum recursion depth exceeded
         :param pla:
         :param plb:
         :return:
@@ -57,5 +59,5 @@ if __name__ == '__main__':
     Python 中 bin 一个负数，输出的是它的原码的二进制表示加上个负号 -0b11
     在c/c++/java里面负数都是以补码的形式进行存储的
     """
-    num1, num2 = 1, -2
-    print(s.plus(num1, num2))
+    num1, num2 = eval(input())
+    print(s.plus_(num1, num2))
