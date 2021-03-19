@@ -45,7 +45,7 @@ input:  n
         aabcdeefgh
         aaabcdeffg
         abbcddefgh
-output: "xiaowang"
+output: xiaowang
 ```
 
 ## 目录
