@@ -41,11 +41,11 @@ ___
 ```
 exp:
 ```
-input:  3
+input:  n
         aabcdeefgh
         aaabcdeffg
         abbcddefgh
-output: xiaowang
+output: "xiaowang"
 ```
 
 ## 目录
