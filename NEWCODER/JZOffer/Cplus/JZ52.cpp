@@ -50,19 +50,19 @@ bool match(string str, string pattern) {
 bool match_(string str, string pattern) 
 {
     // write code here
-    if(pattern.size()==0)
+    if(pattern.size()==0)   //判空，如果pattern size为0，str size还有，为false
     {
         return str.size()==0;
     }
-    bool flg = str.size()>0 && (str[0]==pattern[0] || pattern[0]=='.');
-    if(pattern.size()>1 && pattern[1]=='*')
+    bool flg = str.size()>0 && (str[0]==pattern[0] || pattern[0]=='.'); //第一位匹配，看是否能匹配
+    if(pattern.size()>1 && pattern[1]=='*') //有*，可能代表前面字符出现0次 | 可能代表前面字符出现多次
     {
-        return match(str,pattern.substr(2)) || 
-            (flg && match(str.substr(1),pattern));
+        return match(str,pattern.substr(2)) ||      //出现0次，第一个字符不匹配也没关系
+            (flg && match(str.substr(1),pattern));  //出现多次，只有当前面字符匹配才有意义 | str从下一个字符开始 pattern完整
     }
-    else
+    else    //没有*
     {
-        return flg && match(str.substr(1), pattern.substr(1));
+        return flg && match(str.substr(1), pattern.substr(1));  // flg && 除第一个字符的匹配
     }
 }
 
