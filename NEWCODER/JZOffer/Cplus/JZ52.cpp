@@ -47,9 +47,29 @@ bool match(string str, string pattern) {
     return matchCore(str, pattern);
 }
 
+bool match_(string str, string pattern) 
+{
+    // write code here
+    if(pattern.size()==0)
+    {
+        return str.size()==0;
+    }
+    bool flg = str.size()>0 && (str[0]==pattern[0] || pattern[0]=='.');
+    if(pattern.size()>1 && pattern[1]=='*')
+    {
+        return match(str,pattern.substr(2)) || 
+            (flg && match(str.substr(1),pattern));
+    }
+    else
+    {
+        return flg && match(str.substr(1), pattern.substr(1));
+    }
+}
+
 int main()
 {
     cout << match("aaa","a*a") << endl;
+    cout << match_("aaa","a*a") << endl;
     system("pause");
     return 0;
 }
