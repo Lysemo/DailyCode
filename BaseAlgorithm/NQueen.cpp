@@ -3,7 +3,7 @@
 #include<string>
 
 using namespace std;
-
+//N皇后问题
 //在（x,y）位置放置皇后，攻击位置确定
 void put_queen(int x,int y,vector<vector<int>> &attack)
 {
