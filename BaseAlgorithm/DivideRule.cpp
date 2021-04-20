@@ -419,29 +419,39 @@ public:
 
         int left = 0;
         int right = 0; 
-        if(i==0)    //arr1特别短 且 arr1元素的值都特别大        朝左找小的
+        //要找arr1[i-1]<arr2[j]的，i就一直往左找，直到i=0，还是没找到比arr2[j]小的,
+        //说明，arr1特别短 且 arr1元素的值都特别大，此时中位数肯定在arr2里面
+        if(i==0)   
         {
             left = arr2[j-1];   //中位数肯定在arr2中
         }
-        else if(j==0)   //arr2特别短  且 arr2元素的值都特别大
+        //要找arr2[j-1]<arr1[i]的，j就一直往左找，直到j=0，还是没找到比arr1[i]小的，
+        //说明，arr2特别短  且  arr2的元素的值都特别大，此时中位数肯定在arr1里面
+        else if(j==0)
         {
-            left = arr1[i-1];   //中位数肯定在arr1中
+            left = arr1[i-1];
         }
+        //否则，arr1 arr2各占一部分
         else
         {
-            left = max(arr1[i-1],arr2[j-1]);    //在arr1 arr2各占一部分
+            left = max(arr1[i-1],arr2[j-1]);
         }
-        if(i==length1)  //arr1特别短 且 arr1元素的值都特别小
+        //要找arr1[i]>arr2[j-1]的，i就一直向右找，直到i=length1，还是没找到比arr2[j-1]大的，
+        //说明，arr1特别短 且 arr1的元素都特别小，此时中位数肯定在arr2里面
+        if(i==length1)
         {
-            right = arr2[j-1];  //中位数肯定在arr2中
+            right = arr2[j-1];
         }
-        else if(j==length2) //arr2特别短  且  arr2元素的值特别小
+        //要找arr2[j]>arr1[i-1]的，j就一直向右找，直到j=length2，还是没有找到比arr1[i-1]大的，
+        //说明，arr2特别短 且 arr2的元素都特别小，此时中位数肯定在arr1里面
+        else if(j==length2)
         {
-            right = arr1[i-1];  //中位数肯定在num1中
+            right = arr1[i-1];
         }
+        //否则，arr1 arr2各占一部分
         else
         {
-            right = min(arr1[i],arr2[j]);   //arr1 arr2各占一部分
+            right = min(arr1[i],arr2[j]);
         }
         if((length1+length2)%2==0)  //如果是偶数个
         {
