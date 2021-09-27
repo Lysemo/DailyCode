@@ -86,7 +86,7 @@ void insertSort(vector<int> &arr)
     }
 }
 
-//插入排序
+//希尔排序
 //平均时间复杂度：O(nlogn)
 //最好情况：O(n(logn)^2)
 //最坏情况：O(n(logn)^2)
@@ -161,7 +161,7 @@ void fastSort(vector<int> &arr,int l,int r)
 //归并排序-合并函数
 void merge(vector<int> &arr,int l,int mid,int r)
 {
-    int tmp[r-l+1]; //申请临时数组，用于存储合并后的结果
+    vector<int> tmp(r-l+1,0);   //申请临时数组，用于存储合并后的结果
     int i = l;  //第一个数组开始下标
     int j = mid+1;  //第二个数组开始下标
     int k = 0;
@@ -230,7 +230,7 @@ void countSort(vector<int> &arr)
             maxV = arr[i];
         }
     }
-    int num[maxV-minV+1] = {0}; //以值为索引，建立计算数组，其中对于关系为 value = i+minV
+    vector<int> num(maxV-minV+1,0); //以值为索引，建立计算数组，其中对于关系为 value = i+minV 
     for(int i=0;i<arr.size();i++)   //统计每个值出现的次数
     {
         num[arr[i]-minV] += 1;
@@ -245,7 +245,7 @@ void countSort(vector<int> &arr)
     }
 }
 
-//堆排序-堆调整（下沉）
+//堆排序-堆调整（下沉）（大根堆）
 void heapAdjust(vector<int> &arr,int s,int m)
 {
     //s为初始调整节点，m为最后一个叶子节点
